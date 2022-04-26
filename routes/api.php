@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HerramientaController;
+use App\Http\Controllers\TareaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,9 @@ Route::resource('v1/herramientas', HerramientaController::class);
 Route::controller(HerramientaController::class)->group(function (){
     Route::patch('/v1/herramientas/sumar/{herramienta}', 'sumarInventario');
     Route::patch('/v1/herramientas/restar/{herramienta}', 'restarInventario');
+});
+
+Route::resource('v1/tareas', TareaController::class);
+Route::controller(TareaController::class)->group(function(){
+    Route::patch('/v1/tareas/cambiar-estado/{tarea}/{estatus}', 'cambiarEstatus');
 });
