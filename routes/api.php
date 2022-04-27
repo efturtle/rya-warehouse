@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HerramientaController;
 use App\Http\Controllers\TareaController;
+use App\Http\Controllers\PeticionHerramientaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,12 @@ Route::controller(HerramientaController::class)->group(function (){
 Route::resource('v1/tareas', TareaController::class);
 Route::controller(TareaController::class)->group(function(){
     Route::patch('/v1/tareas/cambiar-estado/{tarea}/{estatus}', 'cambiarEstatus');
+});
+
+
+Route::resource('v1/peticiones', PeticionHerramientaController::class);
+Route::controller(PeticionHerramientaController::class)->group(function(){
+    Route::patch('/v1/peticiones/aceptar/{peticion}', 'aceptarPeticion');
+    Route::patch('/v1/peticiones/rechazar/{peticion}', 'rechazarPeticion');
+    Route::patch('/v1/peticiones/regresar/{peticion}', 'regresarPeticion');
 });
