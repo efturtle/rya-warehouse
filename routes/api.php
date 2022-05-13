@@ -21,22 +21,24 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Route::group(['middleware' => ['auth:sanctum']], function(){
+    Route::resource('v1/herramientas', HerramientaController::class);
+    Route::controller(HerramientaController::class)->group(function (){
+        Route::patch('/v1/herramientas/sumar/{herramienta}', 'sumarInventario');
+        Route::patch('/v1/herramientas/restar/{herramienta}', 'restarInventario');
+    });
 
-Route::resource('v1/herramientas', HerramientaController::class);
-Route::controller(HerramientaController::class)->group(function (){
-    Route::patch('/v1/herramientas/sumar/{herramienta}', 'sumarInventario');
-    Route::patch('/v1/herramientas/restar/{herramienta}', 'restarInventario');
-});
-
-Route::resource('v1/tareas', TareaController::class);
-Route::controller(TareaController::class)->group(function(){
-    Route::patch('/v1/tareas/cambiar-estado/{tarea}/{estatus}', 'cambiarEstatus');
-});
+    Route::resource('v1/tareas', TareaController::class);
+    Route::controller(TareaController::class)->group(function(){
+        Route::patch('/v1/tareas/cambiar-estado/{tarea}/{estatus}', 'cambiarEstatus');
+    });
 
 
-Route::resource('v1/peticiones', PeticionHerramientaController::class);
-Route::controller(PeticionHerramientaController::class)->group(function(){
-    Route::patch('/v1/peticiones/aceptar/{peticion}', 'aceptarPeticion');
-    Route::patch('/v1/peticiones/rechazar/{peticion}', 'rechazarPeticion');
-    Route::patch('/v1/peticiones/regresar/{peticion}', 'regresarPeticion');
-});
+    Route::resource('v1/peticiones', PeticionHerramientaController::class);
+    Route::controller(PeticionHerramientaController::class)->group(function(){
+        Route::patch('/v1/peticiones/aceptar/{peticion}', 'aceptarPeticion');
+        Route::patch('/v1/peticiones/rechazar/{peticion}', 'rechazarPeticion');
+        Route::patch('/v1/peticiones/regresar/{peticion}', 'regresarPeticion');
+    });
+// });
+
