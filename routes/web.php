@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HerramientaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +13,17 @@ use App\Http\Controllers\HerramientaController;
 |
 */
 
-Route::any('{any?}', function () {
+Route::get('/', function () {
     return view('app');
-})->where('any', '.*');
+})->middleware('auth');
 
+Route::get('/dashboard', function () {
+    return view('app');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+
+Route::view('/{any}', 'dashboard')
+    ->middleware('auth')
+    ->where('any', '.*');

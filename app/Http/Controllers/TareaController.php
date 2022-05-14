@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tarea;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TareaController extends Controller
 {
@@ -37,6 +38,7 @@ class TareaController extends Controller
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
             'user_id' => $request->user_id,
+            'actualizador_id' => Auth::user()->id
         ]);
 
         return response()->json([

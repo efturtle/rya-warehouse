@@ -12,6 +12,11 @@ const routes = [
         name: 'tarea',
         component: () => import(/* webpackChunkName: "about" */ '../views/Tareas.vue')
     },
+    {
+        path: '/tareas/create',
+        name: 'tarea.create',
+        component: () => import(/* webpackChunkName: "about" */ '../components/tareas/create.vue')
+    },
 ]
 
 const router = createRouter({

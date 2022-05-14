@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HerramientaController;
 use App\Http\Controllers\TareaController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PeticionHerramientaController;
 
 /*
@@ -17,11 +18,14 @@ use App\Http\Controllers\PeticionHerramientaController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::group(['middleware' => ['auth:sanctum']], function(){
+Route::group(['middleware' => 'auth'], function(){
+
+    Route::get('/v1/users', [UserController::class, 'usuarios']);
+
     Route::resource('v1/herramientas', HerramientaController::class);
     Route::controller(HerramientaController::class)->group(function (){
         Route::patch('/v1/herramientas/sumar/{herramienta}', 'sumarInventario');
@@ -40,5 +44,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         Route::patch('/v1/peticiones/rechazar/{peticion}', 'rechazarPeticion');
         Route::patch('/v1/peticiones/regresar/{peticion}', 'regresarPeticion');
     });
-// });
+});
 
