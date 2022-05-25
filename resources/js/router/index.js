@@ -17,6 +17,16 @@ const routes = [
         name: 'tarea.create',
         component: () => import(/* webpackChunkName: "about" */ '../components/tareas/create.vue')
     },
+    {
+        path: '/herramientas',
+        name: 'herramientas.index',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Herramientas.vue')
+    },    
+    {
+        path: '/herramientas/create',
+        name: 'herramienta.create',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Herramientas/create.vue')
+    },
 ]
 
 const router = createRouter({

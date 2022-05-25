@@ -22722,17 +22722,14 @@ var _hoisted_2 = {
   "class": "flex flex-col items-center w-14 md:w-24 md:60 h-screen px-1 md:px-4 py-8 overflow-y-auto border-r"
 };
 var _hoisted_3 = {
-  "class": "w-full h-full p-1 md:p-2 lg:pd-4 m-4 md:m-6 lg:m-8 overflow-y-auto mt-6"
-};
-var _hoisted_4 = {
-  "class": "p-1 md:p-2 lg:p-4 border-2 shadow-lg shadow-orange-500/40"
+  "class": "w-full h-full overflow-y-auto"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Navigation = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Navigation");
 
   var _component_router_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-view");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Navigation)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)])])]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Navigation)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"w-full h-full p-1 md:p-2 lg:pd-4 m-4 md:m-6 lg:m-8 overflow-y-auto mt-6\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"p-1 md:p-2 lg:p-4 border-2 shadow-lg shadow-orange-500/40\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)])]);
 }
 
 /***/ }),
@@ -22796,11 +22793,13 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" T ");
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    "class": "flex items-left py-2 text-gray-600 rounded-md hover:bg-gray-100",
+    "class": "flex items-left py-2 text-gray-600 rounded-md hover:bg-gray-100 justify-center",
     to: "/"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -22810,11 +22809,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* STABLE */
 
   })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    "class": "flex items-left py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-100",
+    "class": "flex items-left py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-100 justify-center",
     to: "/tareas"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_5];
+    }),
+    _: 1
+    /* STABLE */
+
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    "class": "flex items-left py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-100 justify-center",
+    to: "/herramientas"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_6];
     }),
     _: 1
     /* STABLE */
@@ -22977,6 +22986,18 @@ var routes = [{
   name: 'tarea.create',
   component: function component() {
     return __webpack_require__.e(/*! import() | about */ "about").then(__webpack_require__.bind(__webpack_require__, /*! ../components/tareas/create.vue */ "./resources/js/components/tareas/create.vue"));
+  }
+}, {
+  path: '/herramientas',
+  name: 'herramientas.index',
+  component: function component() {
+    return __webpack_require__.e(/*! import() | about */ "about").then(__webpack_require__.bind(__webpack_require__, /*! ../views/Herramientas.vue */ "./resources/js/views/Herramientas.vue"));
+  }
+}, {
+  path: '/herramientas/create',
+  name: 'herramienta.create',
+  component: function component() {
+    return __webpack_require__.e(/*! import() | about */ "about").then(__webpack_require__.bind(__webpack_require__, /*! ../views/Herramientas/create.vue */ "./resources/js/views/Herramientas/create.vue"));
   }
 }];
 var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_1__.createRouter)({

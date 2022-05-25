@@ -46,6 +46,7 @@ class HerramientaController extends Controller
         Herramienta::create([
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
+            'inventario' => $request->inventario
         ]);
 
         return response()->json([
