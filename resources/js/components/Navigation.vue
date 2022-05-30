@@ -23,6 +23,16 @@
                         T
                     </router-link>
                 </li>
+                <li>
+                    <router-link class="flex items-left py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-100 justify-center" to="/peticiones">
+                        P
+                    </router-link>
+                </li>
+                <li>
+                    <router-link class="flex items-left py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-100 justify-center" to="/usuarios">
+                        U
+                    </router-link>
+                </li>
             </ul>
             </aside>
         </div>

@@ -1,5 +1,11 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/about.js": "/js/about.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/js/TareasIndex.js": "/js/TareasIndex.js",
+    "/js/TareasCreate.js": "/js/TareasCreate.js",
+    "/js/HerramientasIndex.js": "/js/HerramientasIndex.js",
+    "/js/HerramientasCreate.js": "/js/HerramientasCreate.js",
+    "/js/peticionesIndex.js": "/js/peticionesIndex.js",
+    "/js/UsuariosIndex.js": "/js/UsuariosIndex.js"
 }

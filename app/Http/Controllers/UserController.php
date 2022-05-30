@@ -13,4 +13,11 @@ class UserController extends Controller
             'usuarios' => User::all(),
         ]);
     }
+
+    public function usuario(User $user)
+    {
+        return response()->json([
+            'user' => $user
+        ]);
+    }
 }

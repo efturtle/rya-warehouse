@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PeticionHerramienta;
 use App\Models\Herramienta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PeticionHerramientaController extends Controller
 {
@@ -15,6 +16,14 @@ class PeticionHerramientaController extends Controller
      */
     public function index()
     {
+        $peticiones = DB::table('peticion_herramientas')
+            ->join('users', 'peticion_herramientas.solicitador_id', 'users.id')
+            ->select(
+                'peticion_herramientas.id', 'users.name as nombre', 'peticion_herramientas.estatus',
+                'peticion_herramientas.comentario', 'peticion_herramientas.cantidad'
+            )
+            ->get();
+
         return response()->json([
             'peticiones' => PeticionHerramienta::all(),
         ]);
@@ -178,6 +187,18 @@ class PeticionHerramientaController extends Controller
         return response()->json([
             'regresado' => true,
             'inventario' => $herramienta->inventario,
+        ]);
+    }
+
+    public function getAmountOfPeticiones(User $user)
+    {
+        $peticionesCount = DB::table('peticiones')
+            ->where('solicitador_id', $user->id)
+            ->count('id');
+
+
+        return response()->json([
+            'peticionesCount' => $peticionesCount,
         ]);
     }
 }

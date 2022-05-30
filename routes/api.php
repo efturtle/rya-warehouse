@@ -25,6 +25,7 @@ Route::middleware('auth')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/v1/users', [UserController::class, 'usuarios']);
+    Route::get('/v1/users/{user}', [UserController::class, 'usuario']);
 
     Route::resource('v1/herramientas', HerramientaController::class);
     Route::controller(HerramientaController::class)->group(function (){
@@ -43,6 +44,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::patch('/v1/peticiones/aceptar/{peticion}', 'aceptarPeticion');
         Route::patch('/v1/peticiones/rechazar/{peticion}', 'rechazarPeticion');
         Route::patch('/v1/peticiones/regresar/{peticion}', 'regresarPeticion');
+        Route::get('/v1/peticiones/cantidad-de-peticiones-de-usuario/{user}', 'getAmountOfPeticiones');
     });
 });
 
