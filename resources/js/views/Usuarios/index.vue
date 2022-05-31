@@ -3,7 +3,7 @@
         <span v-bind="mensaje_de_error"></span>
         <div class="flex place-content-end mb-4" v-if="admin">
             <div class="px-4 py-2 text-white bg-pink-600 hover:bg-pink-700 cursor-pointer">
-                <router-link :to="{ name: 'herramienta.create'}" class="text-sm font-medium">Crear Usuario</router-link>
+                <router-link :to="{ name: 'usuarios.create'}" class="text-sm font-medium">Crear Usuario</router-link>
             </div>
         </div>
 
@@ -29,10 +29,10 @@
                 <template v-for="user in users" :key="user.id">
                     <tr class="bg-white">
                         <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                            {{ user.nombre }}
+                            {{ user.name }}
                         </td>
                         <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                            {{ peticionesActivas(user.id) }}
+                            {{ user.email }}
                         </td>
                         <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                             <button class="btn bg-gray-500 text-white p-1 rounded hover:bg-gray-400 mr-2">
@@ -61,7 +61,7 @@ export default {
         // get the herramientas
         axios.get('api/v1/users')
         .then((data) => {
-            this.users = data.data.users;
+            this.users = data.data.usuarios;
         })
         .catch(error => {
             this.mensaje_de_error = error
@@ -72,17 +72,28 @@ export default {
         .then((data) => {
             this.user = data.data;
         })
+
+        // axios.get(`/api/v1/peticiones/cantidad-de-peticiones-de-usuario/${1}`)
+        // .then((data) => {
+        //     console.log(data)
+        // })
+        // .catch(error => {
+        //     console.log(error)
+        // })
+
+
     },
     methods:{
-        peticionesActivas(){
-            axios.get(`/api/v1/peticiones/cantidad-de-peticiones-de-usuario/${this.user.id}`)
-            .then((data) => {
-                return data.data.peticionesCount
-            })
-            .catch(error => {
-                return 0
-            })
-        }
+        // peticionesActivas(id){
+        //     axios.get(`/api/v1/users/peticiones/${id}`)
+        //     .then((data) => {
+        //         // return data.data.peticionesCount
+        //         console.log(data)
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+        //     })
+        // }
     },
     computed: {
         admin(){

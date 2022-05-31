@@ -24,8 +24,11 @@ Route::middleware('auth')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth'], function(){
 
-    Route::get('/v1/users', [UserController::class, 'usuarios']);
-    Route::get('/v1/users/{user}', [UserController::class, 'usuario']);
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/v1/users/{user}', 'usuario');
+        Route::get('/v1/users', 'usuarios');
+        Route::post('/v1/usuarios', 'guardarUsuario');
+    });
 
     Route::resource('v1/herramientas', HerramientaController::class);
     Route::controller(HerramientaController::class)->group(function (){

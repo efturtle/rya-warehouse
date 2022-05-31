@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PeticionHerramienta;
 use App\Models\Herramienta;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -192,13 +193,13 @@ class PeticionHerramientaController extends Controller
 
     public function getAmountOfPeticiones(User $user)
     {
-        $peticionesCount = DB::table('peticiones')
+        $peticiones = DB::table('peticion_herramientas')
             ->where('solicitador_id', $user->id)
-            ->count('id');
+            ->get();
 
 
         return response()->json([
-            'peticionesCount' => $peticionesCount,
+            'peticionesCount' => $peticionesCount->count(),
         ]);
     }
 }

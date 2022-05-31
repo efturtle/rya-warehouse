@@ -23040,6 +23040,12 @@ var routes = [{
   component: function component() {
     return __webpack_require__.e(/*! import() | UsuariosIndex */ "UsuariosIndex").then(__webpack_require__.bind(__webpack_require__, /*! ../views/Usuarios/index.vue */ "./resources/js/views/Usuarios/index.vue"));
   }
+}, {
+  path: '/usuarios/create',
+  name: 'usuarios.create',
+  component: function component() {
+    return __webpack_require__.e(/*! import() | UsuariosIndex */ "UsuariosIndex").then(__webpack_require__.bind(__webpack_require__, /*! ../views/Usuarios/create.vue */ "./resources/js/views/Usuarios/create.vue"));
+  }
 }];
 var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_1__.createRouter)({
   history: (0,vue_router__WEBPACK_IMPORTED_MODULE_1__.createWebHistory)(process.env.BASE_URL),
