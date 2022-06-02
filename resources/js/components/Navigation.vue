@@ -34,7 +34,7 @@
                     </router-link>
                 </li>
                 <li>
-                    <button @click="logout">
+                    <button @click="logoutPrompt">
                         X
                     </button>
                 </li>
@@ -42,14 +42,31 @@
             </aside>
         </div>
     </div>
+
 </template>
 
 <script>
 export default {
     methods:{
+        logoutPrompt(){
+            this.$swal({
+                title: 'Cerrar Session?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Si',
+                cancelButtonText: 'No',
+                showCloseButton: true,
+                showLoaderOnConfirm: true
+            })
+            .then((result) => {
+                if (result.value) {
+                    this.logout();
+                }
+            })
+        },
         logout(){
             axios.post('/logout')
-            .then((data) => {
+            .then(() => {
                 window.location.href = "/login";
             })
             .catch(error => {

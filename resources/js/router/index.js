@@ -45,7 +45,7 @@ const routes = [
     {
         path: '/usuarios/create',
         name: 'usuarios.create',
-        component: () => import (/* webpackChunkName: "UsuariosIndex" */ '../views/Usuarios/create.vue')
+        component: () => import (/* webpackChunkName: "UsuariosCreate" */ '../views/Usuarios/create.vue')
     }
 ]
 

@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class UserController extends Controller
 {
@@ -46,5 +47,20 @@ class UserController extends Controller
         return response()->json([
             'created' => true
         ], 201);
+    }
+
+    public function modificarClave(Request $request, User $user)
+    {
+        $request->validate([
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        return response()->json([
+            'updatedPassword' => true,
+        ]);
     }
 }

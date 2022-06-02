@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/v1/users/{user}', 'usuario');
         Route::get('/v1/users', 'usuarios');
         Route::post('/v1/usuarios', 'guardarUsuario');
+        Route::patch('/v1/cambiar-clave/{user}', 'modificarClave');
     });
 
     Route::resource('v1/herramientas', HerramientaController::class);
