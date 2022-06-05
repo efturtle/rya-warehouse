@@ -30,7 +30,6 @@ class TareaController extends Controller
     {
         $request->validate([
             'nombre' => 'required|min:1|string|max:255',
-            'descripcion' => 'required|min:1|string',
             'user_id' => 'required|numeric',
         ]);
 
@@ -71,13 +70,14 @@ class TareaController extends Controller
         $request->validate([
             'nombre' => 'required|min:1|string|max:255',
             'descripcion' => 'required|min:1|string',
-            'actualizador_id' => 'required|numeric',
+            'user_id' => 'required|numeric',
         ]);
 
         $tarea->update([
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
-            'actualizador_id'  => $request->actualizador_id
+            'user_id'  => $request->user_id,
+            'actualizador_id'  => Auth::user()->id,
         ]);
 
         return response()->json([
@@ -100,21 +100,14 @@ class TareaController extends Controller
         ], 200);
     }
 
-    public function cambiarEstatus(Tarea $tarea, $estatus)
+    public function cambiarEstatus(Tarea $tarea)
     {
-        if ($estatus <= 0 || $estatus >= 5 ) {
-            return response()->json([
-                'no existe ese estatus' => true
-            ]);
-        }
-
         $tarea->update([
-            'estatus' => $estatus,
+            'estatus' => 2,
         ]);
 
         return response()->json([
             'estatusCambiado' => true,
-            'estatus' => $tarea->estatus,
         ]);
     }
 }

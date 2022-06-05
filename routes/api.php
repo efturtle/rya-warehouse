@@ -18,6 +18,7 @@ use App\Http\Controllers\PeticionHerramientaController;
 |
 */
 
+// gets the logged in user
 Route::middleware('auth')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -27,8 +28,14 @@ Route::group(['middleware' => 'auth'], function(){
     Route::controller(UserController::class)->group(function () {
         Route::get('/v1/users/{user}', 'usuario');
         Route::get('/v1/users', 'usuarios');
+
+        //user tareas
+        Route::get('/v1/user/tareas/{user}', 'indexTareas');
+
         Route::post('/v1/usuarios', 'guardarUsuario');
         Route::patch('/v1/cambiar-clave/{user}', 'modificarClave');
+        Route::put('/v1/editar-usuario/{user}', 'modificarUsuario');
+        Route::delete('/v1/eliminar-usuario/{user}', 'eliminiarUsuario');
     });
 
     Route::resource('v1/herramientas', HerramientaController::class);
@@ -39,7 +46,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::resource('v1/tareas', TareaController::class);
     Route::controller(TareaController::class)->group(function(){
-        Route::patch('/v1/tareas/cambiar-estado/{tarea}/{estatus}', 'cambiarEstatus');
+        // terminar tarea
+        Route::patch('/v1/tareas/cambiar-estado/{tarea}', 'cambiarEstatus');
     });
 
 

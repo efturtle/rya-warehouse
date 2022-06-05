@@ -6,9 +6,6 @@
     "/js/HerramientasCreate.js": "/js/HerramientasCreate.js",
     "/js/peticionesIndex.js": "/js/peticionesIndex.js",
     "/js/UsuariosIndex.js": "/js/UsuariosIndex.js",
-    "/css/app.css": "/css/app.css",
-    "/js/UsuariosEdit.js": "/js/UsuariosEdit.js",
     "/js/UsuariosCreate.js": "/js/UsuariosCreate.js",
-    "/js/UsuariosShow.js": "/js/UsuariosShow.js",
-    "/js/UsuariosCambioDeClave.js": "/js/UsuariosCambioDeClave.js"
+    "/css/app.css": "/css/app.css"
 }

@@ -20,22 +20,22 @@
                 </li>
                 <li>
                     <router-link class="flex items-left py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-100 justify-center" to="/herramientas">
-                        T
+                        <icons name="toolbox" />
                     </router-link>
                 </li>
                 <li>
                     <router-link class="flex items-left py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-100 justify-center" to="/peticiones">
-                        P
+                        <icons name="shopping-basket" />
                     </router-link>
                 </li>
-                <li>
+                <li v-if="isAdmin">
                     <router-link class="flex items-left py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-100 justify-center" to="/usuarios">
-                        U
+                        <icons name="user-alt" />
                     </router-link>
                 </li>
                 <li>
-                    <button @click="logoutPrompt">
-                        X
+                    <button class="flex items-left py-2 ml-2 mt-5 text-gray-600 rounded-md hover:bg-gray-100 justify-center" @click="logoutPrompt">
+                        <icons name="user-astronaut" />
                     </button>
                 </li>
             </ul>
@@ -46,7 +46,21 @@
 </template>
 
 <script>
+import icons from 'v-svg-icons';
 export default {
+    components:{icons},
+    data(){
+        return {
+            user: [],
+        }
+    },
+    mounted(){
+        // get the user
+        axios.get('/api/user')
+        .then((data) => {
+            this.user = data.data;
+        })
+    },
     methods:{
         logoutPrompt(){
             this.$swal({
@@ -73,6 +87,14 @@ export default {
                 console.log(error);
             })
         }
+    },
+    computed: {
+        isAdmin(){
+            if (this.user.puesto != 3) {
+                return true;
+            }
+            return false;
+        },
     }
 }
 </script>

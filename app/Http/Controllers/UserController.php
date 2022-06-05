@@ -20,6 +20,14 @@ class UserController extends Controller
         ]);
     }
 
+    public function indexTareas(User $user)
+    {
+        $tareas = DB::table('tareas')->where('user_id', $user->id)->get();
+        return response()->json([
+            'tareas' => $tareas,
+        ]);
+    }
+
     public function usuario(User $user)
     {
         return response()->json([
@@ -61,6 +69,32 @@ class UserController extends Controller
 
         return response()->json([
             'updatedPassword' => true,
+        ]);
+    }
+
+    public function modificarUsuario(Request $request, User $user)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        return response()->json([
+            'updatedUser' => true,
+        ]);
+    }
+
+    public function eliminiarUsuario(Request $request, User $user)
+    {
+        User::destroy($user->id);
+
+        return response()->json([
+            'deletedAUser' => true
         ]);
     }
 }

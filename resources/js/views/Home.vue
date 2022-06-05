@@ -112,7 +112,30 @@ export default {
         noQuiereCambiarClave(){
             this.quiereCambiarClave = false;
         },
+        sweetAlertToast(title, text){
+            this.$swal({
+                title: title,
+                text: text,
+                toast: true,
+                position: 'center-start',
+            })
+        },
         confirmarYCambiarClave(){
+            // validacion de campos vacios
+            if (this.form.password == '') {
+                this.sweetAlertToast('campo vacio', 'clave');
+                return;
+            }
+            if (this.form.password_confirmation == '') {
+                this.sweetAlertToast('campo vacio', 'confirmacion de clave');
+                return;
+            }
+
+            if (this.form.password.length < 8) {
+                this.sweetAlertToast('clave insegura', 'no tiene suficientes caracteres');
+                return;
+            }
+
             this.$swal({
                 title: 'Cambiar Contraseña',
                 showCancelButton: true,
@@ -128,8 +151,8 @@ export default {
                         this.$swal('Exito', 'gracias', 'success')
                         this.quiereCambiarClave = false;
                     })
-                    .catch(error => {
-                        this.$swal('Error', error, 'error')
+                    .catch(() => {
+                        this.$swal('Error', 'Contraseñas no coinciden', 'error')
                     })
                 }
             })

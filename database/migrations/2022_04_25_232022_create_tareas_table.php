@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('tareas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('descripcion');
+            $table->string('descripcion')->nullable();
             $table->foreignId('user_id');
             $table->foreignId('actualizador_id')->nullable();
-            // 1 = creado, 2 = revisado, 3 = en proceso, 4 = terminado
+            // 1 = creado, 2 = terminado
             $table->tinyInteger('estatus')->default(1);
             $table->softDeletes();
             $table->timestamps();
