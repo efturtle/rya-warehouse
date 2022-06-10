@@ -66,9 +66,10 @@
                             </button>
 
                             <!-- Solicitar esta herramienta -->
-                            <button class="btn bg-gray-500 text-white p-1 rounded hover:bg-gray-400 mr-2" v-show="!admin">
-                                <icons name="shopping-cart" width="20px" height="20px" />
-                            </button>
+                            <SolicitarHerramienta
+                                :herramienta="herramienta"
+                                :isAdmin="admin" />
+
                         </td>
                     </tr>
                 </template>
@@ -183,8 +184,9 @@
 
 <script>
 import icons from 'v-svg-icons';
+import SolicarHerramienta from '../components/Herramientas/SolicitudDeHerramienta.vue'
 export default {
-    components:{icons},
+    components:{icons, SolicarHerramienta},
     data(){
         return {
             herramientas: [],

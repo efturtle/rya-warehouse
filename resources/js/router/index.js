@@ -28,6 +28,11 @@ const routes = [
         component: () => import(/* webpackChunkName: "HerramientasCreate" */ '../views/Herramientas/create.vue')
     },
     {
+        path: '/herramientas/solicitar',
+        name: 'herramienta.solicitar',
+        component: () => import(/* webpackChunkName: "HerramientasCreate" */ '../views/Herramientas/create.vue')
+    },
+    {
         path: '/peticiones',
         name: 'peticiones.index',
         component: () => import(/* webpackChunkName: "peticionesIndex" */ '../views/Peticiones/index.vue')
