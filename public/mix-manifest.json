@@ -7,5 +7,6 @@
     "/js/peticionesIndex.js": "/js/peticionesIndex.js",
     "/js/UsuariosIndex.js": "/js/UsuariosIndex.js",
     "/js/UsuariosCreate.js": "/js/UsuariosCreate.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/js/HerramientasCarrito.js": "/js/HerramientasCarrito.js"
 }

@@ -1,8 +1,16 @@
 <template>
     <div class="overflow-hidden overflow-x-auto min-w-full align-middle sm:rounded-md">
         <span v-bind="mensaje_de_error"></span>
-        <div class="flex place-content-end mb-4" v-if="admin">
-            <div class="px-4 py-2 text-white bg-orange-600 hover:bg-orange-700 cursor-pointer">
+        <div class="flex place-content-start mb-4">
+            <router-link :to="{ name: 'herramientas.carrito' }">
+                <div class="flex p-3 pt-3 rounded-full bg-green-500 text-white text-center">
+                    Articulos en el carrito: &nbsp;
+                    <span>
+                        {{ total_products }}
+                    </span>
+                </div>
+            </router-link>
+            <div class="px-4 py-2 text-white bg-orange-600 hover:bg-orange-700 cursor-pointer" v-if="admin">
                 <router-link :to="{ name: 'herramienta.create'}" class="text-sm font-medium">Crear Herramienta</router-link>
             </div>
         </div>
@@ -67,8 +75,7 @@
 
                             <!-- Solicitar esta herramienta -->
                             <SolicitarHerramienta
-                                :herramienta="herramienta"
-                                :isAdmin="admin" />
+                                :herramienta="herramienta" />
 
                         </td>
                     </tr>
@@ -184,9 +191,9 @@
 
 <script>
 import icons from 'v-svg-icons';
-import SolicarHerramienta from '../components/Herramientas/SolicitudDeHerramienta.vue'
+import SolicitarHerramienta from '../components/Herramientas/SolicitudDeHerramienta.vue'
 export default {
-    components:{icons, SolicarHerramienta},
+    components:{icons, SolicitarHerramienta},
     data(){
         return {
             herramientas: [],
@@ -410,6 +417,9 @@ export default {
                 return true;
             }
             return false;
+        },
+        total_products(){
+            return this.$store.getters.totalItems;
         }
     }
 }

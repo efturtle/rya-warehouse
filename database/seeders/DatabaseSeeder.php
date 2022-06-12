@@ -19,5 +19,9 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'email' => 'beto@gmail.com'
         ]);
+
+        \App\Models\Herramienta::factory(20)->create([
+            'inventario' => 20,
+        ]);
     }
 }

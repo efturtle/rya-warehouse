@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('descripcion')->nullable();
             $table->integer('inventario')->default(0);
+            $table->integer('quantity')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

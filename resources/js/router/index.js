@@ -17,6 +17,8 @@ const routes = [
         name: 'tarea.create',
         component: () => import(/* webpackChunkName: "TareasCreate" */ '../components/tareas/create.vue')
     },
+
+
     {
         path: '/herramientas',
         name: 'herramientas.index',
@@ -28,10 +30,17 @@ const routes = [
         component: () => import(/* webpackChunkName: "HerramientasCreate" */ '../views/Herramientas/create.vue')
     },
     {
+        path: '/herramientas/carrito',
+        name: 'herramientas.carrito',
+        component: () => import(/* webpackChunkName: "HerramientasCarrito" */ '../components/Herramientas/CanastaDeHerramientas.vue')
+    },
+    {
         path: '/herramientas/solicitar',
         name: 'herramienta.solicitar',
         component: () => import(/* webpackChunkName: "HerramientasCreate" */ '../views/Herramientas/create.vue')
     },
+
+
     {
         path: '/peticiones',
         name: 'peticiones.index',

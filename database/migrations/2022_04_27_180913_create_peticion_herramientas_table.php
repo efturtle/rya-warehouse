@@ -15,13 +15,11 @@ return new class extends Migration
     {
         Schema::create('peticion_herramientas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('herramienta_id');
             $table->foreignId('aprovador_id')->nullable();
             $table->foreignId('solicitador_id');
             // 1 = creado, 2 = aceptado, 3 = rechazado, 4 = devuelto
             $table->tinyInteger('estatus')->default(1);
-            $table->string('comentario');
-            $table->integer('cantidad');
+            $table->string('comentario')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

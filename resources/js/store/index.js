@@ -13,11 +13,11 @@ export default createStore({
     getters: {
 
         // Cart
-        productQuantity: (state) => (product) => {
-            const item = state.cart.find(i => i.id === product.id)
+        herramientaQuantity: (state) => (herramienta) => {
+            const item = state.cart.find(i => i.id === herramienta.id)
 
             if (item) return item.quantity
-            else return null
+            else return 0
         },
         cartItems: (state) => {
             return state.cart;
@@ -25,6 +25,10 @@ export default createStore({
         cartTotal: state => {
             let total = state.cart.reduce((a, b) => a + (b.precio * b.quantity), 0)
             return total.toFixed(2);
+        },
+        totalItems: state => {
+            let productCount = state.cart.reduce( (a, b) => a + (b.quantity), 0)
+            return productCount;
         },
 
         // User
@@ -46,6 +50,11 @@ export default createStore({
             }
 
             updateLocalStorage(state.cart)
+        },
+
+        deleteItemsFromCart(state){
+            state.cart = [];
+            updateLocalStorage(state.cart);
         },
 
         removeFromCart(state, product){

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\PeticionHerramienta;
 use App\Models\Herramienta;
 use App\Models\User;
+use App\Models\PeticionSaleSlot;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PeticionHerramientaController extends Controller
@@ -38,24 +40,53 @@ class PeticionHerramientaController extends Controller
      */
     public function store(Request $request)
     {
-        // validate incoming request
-        $request->validate([
-            'herramienta_id' => 'required|min:1|numeric',
-            'solicitador_id' => 'required|min:1|numeric',
-            'comentario' => 'required|min:1|string',
-            'cantidad' => 'required|min:1|numeric',
+        $herramientas = $request->all();
+
+        // validate that incoming is array
+        if (!is_array($herramientas)) {
+            return response()->json([
+                'is not array' => 'error',
+            ]);
+        }
+
+        $cantidades = array_column($herramientas, 'quantity');
+        $ids = array_column($herramientas, 'id');
+
+        // validate suficient inventory on each product
+        foreach ($ids as $key => $herramienta_id) {
+            $herramienta = Herramienta::find($herramienta_id);
+            if ($herramienta->inventario < $cantidades[$key]) {
+                return response()->json([
+                    'insuficiente' => $herramienta->id,
+                ]);
+            }
+        }
+
+        $user = Auth::user();
+
+        $peticion = PeticionHerramienta::create([
+            'solicitador_id' => $user->id,
         ]);
 
-        // crear peticion
-        PeticionHerramienta::create([
-            'herramienta_id' => $request->herramienta_id,
-            'solicitador_id' => $request->solicitador_id,
-            'comentario' => $request->comentario,
-            'cantidad' => $request->cantidad,
-        ]);
+        foreach ($ids as $key => $herramienta_id) {
+            // Se crea una slot por cada herramienta solicitada
+            PeticionSaleSlot::create([
+                'herramienta_id' => $ids[$key],
+                'peticion_id' => $peticion->id,
+                'cantidad' => $cantidades[$key],
+            ]);
+
+            // reducir inventario
+            $herramienta = Herramienta::find($herramienta_id);
+            $herramienta->update([
+                'inventario' => $herramienta->inventario -= $cantidades[$key]
+            ]);
+
+        }
+
 
         return response()->json([
-            'created' => true,
+            'requestStuff' => 'great',
         ], 201);
     }
 
