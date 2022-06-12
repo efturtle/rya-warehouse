@@ -36,7 +36,6 @@ export default {
             axios.post('/api/v1/peticiones', this.$store.getters.cartItems)
             .then((response) => {
                 let message = response.data.data;
-                console.log(message);
                 this.$swal('Exito', 'Herramientas Solicitadas', 'success');
                 this.$store.commit('deleteItemsFromCart');
 

@@ -20,6 +20,7 @@ return new class extends Migration
             // 1 = creado, 2 = aceptado, 3 = rechazado, 4 = devuelto
             $table->tinyInteger('estatus')->default(1);
             $table->string('comentario')->nullable();
+            $table->integer('total_herramientas_en_peticion');
             $table->softDeletes();
             $table->timestamps();
         });

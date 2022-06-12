@@ -23,7 +23,7 @@
                         <icons name="toolbox" />
                     </router-link>
                 </li>
-                <li>
+                <li v-if="isAdmin">
                     <router-link class="flex items-left py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-100 justify-center" to="/peticiones">
                         <icons name="shopping-basket" />
                     </router-link>
@@ -84,7 +84,6 @@ export default {
                 window.location.href = "/login";
             })
             .catch(error => {
-                console.log(error);
             })
         }
     },

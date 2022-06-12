@@ -105,7 +105,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post('/api/v1/peticiones', this.$store.getters.cartItems).then(function (response) {
         var message = response.data.data;
-        console.log(message);
 
         _this.$swal('Exito', 'Herramientas Solicitadas', 'success');
 

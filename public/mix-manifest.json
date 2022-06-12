@@ -4,9 +4,10 @@
     "/js/TareasCreate.js": "/js/TareasCreate.js",
     "/js/HerramientasIndex.js": "/js/HerramientasIndex.js",
     "/js/HerramientasCreate.js": "/js/HerramientasCreate.js",
+    "/js/HerramientasCarrito.js": "/js/HerramientasCarrito.js",
     "/js/peticionesIndex.js": "/js/peticionesIndex.js",
     "/js/UsuariosIndex.js": "/js/UsuariosIndex.js",
     "/js/UsuariosCreate.js": "/js/UsuariosCreate.js",
     "/css/app.css": "/css/app.css",
-    "/js/HerramientasCarrito.js": "/js/HerramientasCarrito.js"
+    "/js/PeticionesCreate.js": "/js/PeticionesCreate.js"
 }

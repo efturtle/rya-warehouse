@@ -57,6 +57,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::patch('/v1/peticiones/rechazar/{peticion}', 'rechazarPeticion');
         Route::patch('/v1/peticiones/regresar/{peticion}', 'regresarPeticion');
         Route::get('/v1/peticiones/cantidad-de-peticiones-de-usuario/{user}', 'getAmountOfPeticiones');
+        Route::get('/v1/peticiones/peticion-items/{peticione}', 'peticionItems');
     });
 });
 

@@ -410,6 +410,8 @@ export default {
         .then((data) => {
             this.user = data.data;
         })
+
+        this.$store.commit('updateCartFromLocalStorage')
     },
     computed: {
         admin(){

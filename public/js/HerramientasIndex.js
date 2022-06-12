@@ -269,6 +269,7 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('/api/user').then(function (data) {
       _this5.user = data.data;
     });
+    this.$store.commit('updateCartFromLocalStorage');
   },
   computed: {
     admin: function admin() {

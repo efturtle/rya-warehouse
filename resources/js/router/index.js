@@ -41,16 +41,19 @@ const routes = [
     },
 
 
+    // PETICIONES
     {
         path: '/peticiones',
         name: 'peticiones.index',
         component: () => import(/* webpackChunkName: "peticionesIndex" */ '../views/Peticiones/index.vue')
     },
-    // {
-    //     path: '/peticiones/create',
-    //     name: 'peticiones.create',
-    //     component: () => import(/* webpackChunkName: "PeticionesCreate" */ '../views/Peticiones/create.vue')
-    // },
+    {
+        path: '/peticion/show',
+        name: 'peticion.show',
+        component: () => import(/* webpackChunkName: "PeticionesCreate" */ '../views/Peticiones/show.vue')
+    },
+
+
     {
         path: '/usuarios',
         name: 'usuarios.index',

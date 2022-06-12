@@ -19,16 +19,15 @@ class PeticionHerramientaController extends Controller
      */
     public function index()
     {
-        $peticiones = DB::table('peticion_herramientas')
+        $peticionesWithUserInfo = DB::table('peticion_herramientas')
             ->join('users', 'peticion_herramientas.solicitador_id', 'users.id')
-            ->select(
-                'peticion_herramientas.id', 'users.name as nombre', 'peticion_herramientas.estatus',
-                'peticion_herramientas.comentario', 'peticion_herramientas.cantidad'
-            )
-            ->get();
+            ->select('users.name', 'peticion_herramientas.estatus', 'peticion_herramientas.comentario',
+             'peticion_herramientas.created_at', 'users.email', 'peticion_herramientas.total_herramientas_en_peticion',
+             'peticion_herramientas.id', 'peticion_herramientas.estatus')
+             ->get();
 
         return response()->json([
-            'peticiones' => PeticionHerramienta::all(),
+            'peticiones' => $peticionesWithUserInfo,
         ]);
     }
 
@@ -66,6 +65,7 @@ class PeticionHerramientaController extends Controller
 
         $peticion = PeticionHerramienta::create([
             'solicitador_id' => $user->id,
+            'total_herramientas_en_peticion' => array_sum($cantidades),
         ]);
 
         foreach ($ids as $key => $herramienta_id) {
@@ -76,11 +76,11 @@ class PeticionHerramientaController extends Controller
                 'cantidad' => $cantidades[$key],
             ]);
 
-            // reducir inventario
-            $herramienta = Herramienta::find($herramienta_id);
-            $herramienta->update([
-                'inventario' => $herramienta->inventario -= $cantidades[$key]
-            ]);
+            // // reducir inventario
+            // $herramienta = Herramienta::find($herramienta_id);
+            // $herramienta->update([
+            //     'inventario' => $herramienta->inventario -= $cantidades[$key]
+            // ]);
 
         }
 
@@ -171,19 +171,31 @@ class PeticionHerramientaController extends Controller
         ]);
     }
 
-    public function aceptarPeticion(PeticionHerramienta $peticion)
+    public function aceptarPeticion(Request $request, PeticionHerramienta $peticion)
     {
         // verify that there is enough inventory in the database
-        $herramienta = Herramienta::find($peticion->herramienta_id);
-        if ($peticion->cantidad > $herramienta->inventario) {
-            return response()->json([
-                'insuficiente' => true,
-            ]);
+        $productItems = $request->input('peticionItemsArray');
+
+        $cantidades = array_column($productItems, 'cantidad');
+        $herramientasIds = array_column($productItems, 'herramienta_id');
+
+        // validar por suficiente inventario
+        foreach ($herramientasIds as $key => $herramientaId) {
+            $herramienta = Herramienta::find($herramientaId);
+            if ($herramienta->inventario < $cantidades[$key]) {
+                return response()->json([
+                    'insuficiente' => $herramienta->id
+                ]);
+            }
         }
 
         // reducir inventario
-        $herramienta->inventario -= $peticion->cantidad;
-        $herramienta->save();
+        foreach ($herramientasIds as $key => $herramientaId) {
+            $herramienta = Herramienta::find($herramientaId);
+            $herramienta->update([
+                'inventario' => $herramienta->inventario -= $cantidades[$key],
+            ]);
+        }
 
         $peticion->update([
             'estatus' => 2,
@@ -194,10 +206,11 @@ class PeticionHerramientaController extends Controller
         ]);
     }
 
-    public function rechazarPeticion(PeticionHerramienta $peticion)
+    public function rechazarPeticion(Request $request, PeticionHerramienta $peticion)
     {
         $peticion->update([
             'estatus' => 3,
+            'comentario' => $request->comentario,
         ]);
 
         return response()->json([
@@ -207,9 +220,18 @@ class PeticionHerramientaController extends Controller
 
     public function regresarPeticion(PeticionHerramienta $peticion)
     {
-        // sumar al inventario de la herramienta
-        $herramienta = Herramienta::find($peticion->herramienta_id);
-        $herramienta->inventario -= $peticion->cantidad;
+        // jalar todas las herramientas
+        $peticionItems = DB::table('peticion_sale_slots')
+        ->where('peticion_id', $peticion->id)
+        ->get();
+
+        foreach ($peticionItems as $key => $peticionItem) {
+            // sumar al inventario de la herramienta
+            $herramienta = Herramienta::find($peticionItem->herramienta_id);
+            $herramienta->inventario += $peticion->cantidad;
+            $herramienta->save();
+        }
+
 
         // actualizar estatus
         $peticion->update([
@@ -218,7 +240,6 @@ class PeticionHerramientaController extends Controller
 
         return response()->json([
             'regresado' => true,
-            'inventario' => $herramienta->inventario,
         ]);
     }
 
@@ -231,6 +252,20 @@ class PeticionHerramientaController extends Controller
 
         return response()->json([
             'peticionesCount' => $peticionesCount->count(),
+        ]);
+    }
+
+    public function peticionItems(PeticionHerramienta $peticione)
+    {
+        $peticionItems = DB::table('peticion_sale_slots')
+            ->join('herramientas', 'peticion_sale_slots.herramienta_id', 'herramientas.id')
+            ->select('peticion_sale_slots.cantidad', 'herramientas.nombre', 'peticion_sale_slots.id',
+             'herramientas.id as herramienta_id')
+            ->where('peticion_id', $peticione->id)
+            ->get();
+
+        return response()->json([
+            'peticionItems' => $peticionItems,
         ]);
     }
 }
