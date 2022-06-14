@@ -6,8 +6,8 @@
     "/js/HerramientasCreate.js": "/js/HerramientasCreate.js",
     "/js/HerramientasCarrito.js": "/js/HerramientasCarrito.js",
     "/js/peticionesIndex.js": "/js/peticionesIndex.js",
+    "/js/PeticionesCreate.js": "/js/PeticionesCreate.js",
     "/js/UsuariosIndex.js": "/js/UsuariosIndex.js",
     "/js/UsuariosCreate.js": "/js/UsuariosCreate.js",
-    "/css/app.css": "/css/app.css",
-    "/js/PeticionesCreate.js": "/js/PeticionesCreate.js"
+    "/css/app.css": "/css/app.css"
 }
