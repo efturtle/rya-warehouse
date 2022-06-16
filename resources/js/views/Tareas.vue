@@ -35,7 +35,8 @@
                             {{ tarea.nombre }}
                         </td>
                         <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                            {{ estatus(tarea.estatus) }}
+                            <span v-if="tarea.estatus == 1">Creada</span>
+                            <span v-if="tarea.estatus == 2">Terminada</span>
                         </td>
                         <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                             {{ getUserName(tarea.user_id) }}
@@ -119,16 +120,6 @@ import icons from 'v-svg-icons';
 export default {
     components:{icons},
     methods: {
-        estatus(tareaId){
-            switch (tareaId) {
-                case '1':
-                    return 'pendiente'
-                case '2':
-                    return 'terminada'
-                default:
-                    return 'error'
-            }
-        },
         noQuiereEditarTarea(){
             this.quiereEditarTarea = false;
         },

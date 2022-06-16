@@ -20,9 +20,13 @@
                     <span class="text-gray-400"> Telefono: &nbsp; </span>
                     <span class="font-semibold text-md uppercase"> {{ user.telefono }}</span>
                 </div>
-                <div>
+                <div class="flex">
                     <span class="text-gray-400"> Puesto: &nbsp; </span>
-                    <span class="font-semibold text-md uppercase"> {{ puesto }}</span>
+                    <div class="font-semibold text-md uppercase">
+                        <span v-if="user.puesto == 1">Administrador de Almacen</span>
+                        <span v-if="user.puesto == 2">Administrador General</span>
+                        <span v-if="user.puesto == 3">Tecnico</span>
+                    </div>
                 </div>
 
             </div>
@@ -86,18 +90,6 @@ export default {
         }
     },
     computed: {
-        puesto(){
-            switch (this.user.puesto) {
-                case '1':
-                    return 'Administrador Almancen';
-                case '2':
-                    return 'Administrador General';
-                case '3':
-                    return 'Tecnico';
-                default:
-                    return '?'
-            }
-        }
     },
     mounted() {
         axios.get('/api/user')
