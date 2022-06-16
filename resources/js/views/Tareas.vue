@@ -39,7 +39,7 @@
                             <span v-if="tarea.estatus == 2">Terminada</span>
                         </td>
                         <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                            {{ getUserName(tarea.user_id) }}
+                            {{ users.find(user => user.id == tarea.user_id).name }}
                         </td>
 
                         <!-- Actions -->
@@ -226,10 +226,6 @@ export default {
                 return true;
             }
             return false;
-        },
-        getUserName(user_id){
-            let user = this.users.find(user => user.id == user_id);
-            return user.name
         },
         sweetAlertToast(title, text, icon){
             this.$swal({
