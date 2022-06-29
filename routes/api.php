@@ -23,8 +23,10 @@ Route::middleware('auth')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// todos los usuarios que esten iniciados session
 Route::group(['middleware' => 'auth'], function(){
 
+    // usuarios
     Route::controller(UserController::class)->group(function () {
         Route::get('/v1/users/{user}', 'usuario');
         Route::get('/v1/users', 'usuarios');
@@ -38,12 +40,14 @@ Route::group(['middleware' => 'auth'], function(){
         Route::delete('/v1/eliminar-usuario/{user}', 'eliminiarUsuario');
     });
 
+    // herramientas
     Route::resource('v1/herramientas', HerramientaController::class);
     Route::controller(HerramientaController::class)->group(function (){
         Route::patch('/v1/herramientas/sumar/{herramienta}', 'sumarInventario');
         Route::patch('/v1/herramientas/restar/{herramienta}', 'restarInventario');
     });
 
+    // Tareas
     Route::resource('v1/tareas', TareaController::class);
     Route::controller(TareaController::class)->group(function(){
         // terminar tarea
@@ -51,6 +55,7 @@ Route::group(['middleware' => 'auth'], function(){
     });
 
 
+    // peticiones
     Route::resource('v1/peticiones', PeticionHerramientaController::class);
     Route::controller(PeticionHerramientaController::class)->group(function(){
         Route::patch('/v1/peticiones/aceptar/{peticion}', 'aceptarPeticion');

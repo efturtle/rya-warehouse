@@ -76,12 +76,6 @@ class PeticionHerramientaController extends Controller
                 'cantidad' => $cantidades[$key],
             ]);
 
-            // // reducir inventario
-            // $herramienta = Herramienta::find($herramienta_id);
-            // $herramienta->update([
-            //     'inventario' => $herramienta->inventario -= $cantidades[$key]
-            // ]);
-
         }
 
 

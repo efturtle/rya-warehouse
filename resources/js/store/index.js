@@ -22,10 +22,6 @@ export default createStore({
         cartItems: (state) => {
             return state.cart;
         },
-        cartTotal: state => {
-            let total = state.cart.reduce((a, b) => a + (b.precio * b.quantity), 0)
-            return total.toFixed(2);
-        },
         totalItems: state => {
             let productCount = state.cart.reduce( (a, b) => a + (b.quantity), 0)
             return productCount;
