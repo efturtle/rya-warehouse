@@ -209,7 +209,7 @@ export default {
             .then((result) => {
                 if (result.value) {
                     axios.patch(`/api/v1/tareas/cambiar-estado/${tarea_id}`)
-                    .then(() => {
+                    .then((response) => {
                         this.sweetAlertToast('Exito', 'Ah Terminado una tarea!', 'success');
                         let tarea = this.getTarea(tarea_id);
                         tarea.estatus = '2';

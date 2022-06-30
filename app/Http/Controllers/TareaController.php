@@ -18,7 +18,7 @@ class TareaController extends Controller
     {
         $tareas = DB::table('tareas')
         ->join('users', 'tareas.user_id', 'users.id')
-        ->select('users.name as usuario', 'tareas.nombre', 'tareas.descripcion',
+        ->select('users.name as usuario', 'tareas.id', 'tareas.nombre', 'tareas.descripcion',
         'tareas.estatus', 'tareas.actualizador_id')
         ->get();
 

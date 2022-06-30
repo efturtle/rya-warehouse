@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('v1/tareas', TareaController::class);
     Route::controller(TareaController::class)->group(function(){
         // terminar tarea
-        Route::patch('/v1/tareas/cambiar-estado/{tarea}', 'cambiarEstatus');
+        Route::patch('/v1/tareas/cambiar-estado/{id}', 'cambiarEstatus');
     });
 
 

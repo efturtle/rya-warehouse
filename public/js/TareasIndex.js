@@ -110,7 +110,7 @@ __webpack_require__.r(__webpack_exports__);
         showLoaderOnConfirm: true
       }).then(function (result) {
         if (result.value) {
-          axios.patch("/api/v1/tareas/cambiar-estado/".concat(tarea_id)).then(function () {
+          axios.patch("/api/v1/tareas/cambiar-estado/".concat(tarea_id)).then(function (response) {
             _this3.sweetAlertToast('Exito', 'Ah Terminado una tarea!', 'success');
 
             var tarea = _this3.getTarea(tarea_id);
