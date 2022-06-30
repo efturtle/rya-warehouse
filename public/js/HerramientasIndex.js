@@ -766,13 +766,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _SolicitudDeHerramienta_vue_vue_type_template_id_56bd8508__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SolicitudDeHerramienta.vue?vue&type=template&id=56bd8508 */ "./resources/js/components/Herramientas/SolicitudDeHerramienta.vue?vue&type=template&id=56bd8508");
 /* harmony import */ var _SolicitudDeHerramienta_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SolicitudDeHerramienta.vue?vue&type=script&lang=js */ "./resources/js/components/Herramientas/SolicitudDeHerramienta.vue?vue&type=script&lang=js");
-/* harmony import */ var _home_isellshoes_open_source_repos_rya_warehouse_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var _home_turtlemate_open_source_repos_rya_warehouse_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,_home_isellshoes_open_source_repos_rya_warehouse_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_SolicitudDeHerramienta_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_SolicitudDeHerramienta_vue_vue_type_template_id_56bd8508__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Herramientas/SolicitudDeHerramienta.vue"]])
+const __exports__ = /*#__PURE__*/(0,_home_turtlemate_open_source_repos_rya_warehouse_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_SolicitudDeHerramienta_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_SolicitudDeHerramienta_vue_vue_type_template_id_56bd8508__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Herramientas/SolicitudDeHerramienta.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -793,13 +793,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Herramientas_vue_vue_type_template_id_354b5fdc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Herramientas.vue?vue&type=template&id=354b5fdc */ "./resources/js/views/Herramientas.vue?vue&type=template&id=354b5fdc");
 /* harmony import */ var _Herramientas_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Herramientas.vue?vue&type=script&lang=js */ "./resources/js/views/Herramientas.vue?vue&type=script&lang=js");
-/* harmony import */ var _home_isellshoes_open_source_repos_rya_warehouse_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var _home_turtlemate_open_source_repos_rya_warehouse_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,_home_isellshoes_open_source_repos_rya_warehouse_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Herramientas_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Herramientas_vue_vue_type_template_id_354b5fdc__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/views/Herramientas.vue"]])
+const __exports__ = /*#__PURE__*/(0,_home_turtlemate_open_source_repos_rya_warehouse_api_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Herramientas_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Herramientas_vue_vue_type_template_id_354b5fdc__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/views/Herramientas.vue"]])
 /* hot reload */
 if (false) {}
 

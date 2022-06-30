@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tarea;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TareaController extends Controller
 {
@@ -15,8 +16,14 @@ class TareaController extends Controller
      */
     public function index()
     {
+        $tareas = DB::table('tareas')
+        ->join('users', 'tareas.user_id', 'users.id')
+        ->select('users.name as usuario', 'tareas.nombre', 'tareas.descripcion',
+        'tareas.estatus', 'tareas.actualizador_id')
+        ->get();
+
         return response()->json([
-            'tareas' => Tarea::all(),
+            'tareas' => $tareas,
         ]);
     }
 

@@ -22,7 +22,13 @@ class UserController extends Controller
 
     public function indexTareas(User $user)
     {
-        $tareas = DB::table('tareas')->where('user_id', $user->id)->get();
+        $tareas = DB::table('tareas')
+        ->join('users', 'tareas.user_id', 'users.id')
+        ->select('users.name as usuario', 'tareas.nombre', 'tareas.descripcion',
+        'tareas.estatus', 'tareas.actualizador_id')
+        ->where('user_id', $user->id)
+        ->get();
+
         return response()->json([
             'tareas' => $tareas,
         ]);

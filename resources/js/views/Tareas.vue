@@ -39,7 +39,7 @@
                             <span v-if="tarea.estatus == 2">Terminada</span>
                         </td>
                         <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                            {{ users.find(user => user.id == tarea.user_id).name }}
+                            {{ tarea.usuario }}
                         </td>
 
                         <!-- Actions -->
